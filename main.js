@@ -16,6 +16,37 @@ $(document).ready(function() {
         localStorage.setItem(time, text);
     });
 
+    // Time Tracker Function
+    function timeTracker() {
+        var timeNow = moment().hour();
+
+    // time block loops
+    $('.time-block').each(function () {
+        var timeBlock = parseInt($(this).attr('id').split('hour')[1]);
+
+        // Check past, present, future and change classes for color indicator
+        if(timeBlock < timeNow) {
+            $(this).removeClass("future");
+            $(this).removeClass("present");
+            $(this).addClass("past");
+        } 
+        
+        else if (timeBlock === timeNow) {
+            $(this).removeClass("past");
+            $(this).removeClass("future");
+            $(this).addClass("present");
+        }
+        
+        else {
+            $(this).removeClass("past");
+            $(this).removeClass("present");
+            $(this).addClass("future");
+
+        }
+    })
+}
+
+    timeTracker();
 });
 
 
